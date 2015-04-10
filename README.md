@@ -1,4 +1,4 @@
-Cordova ToDo List application
+Cordova IRC application
 ===================================
 
 # Prerequiresites
@@ -17,9 +17,9 @@ Please make sure that you have account on GitHub.
 Clone source code repository following directions from https://help.github.com/articles/adding-repositories-with-github-for-windows/
 Or from Git Shell run 
 
-    git clone https://github.com/DeutchKazakhUnivercity/cordova-todo-app
+    git clone https://github.com/DeutchKazakhUnivercity/cordova-irc
     
-That will create sub-folder `cordova-todo-app` with all source code. That folder would be later called the project root.
+That will create sub-folder `cordova-irc` with all source code. That folder would be later called the project root.
 
 ## Webdev setup
 
@@ -82,5 +82,5 @@ Run application in Android emulator.
     
 ## Testing application
 All application tests could be run as individual pages from the browser.
-you could open for example page [http://localhost:3000/tests/todo-app.html](http://localhost:3000/tests/todo-app.html) to run Application tests suite.
+you could open for example page [http://localhost:3000/tests/app-header.html](http://localhost:3000/tests/app-header.html) to run Application tests suite.
 You may need to change port, depending on which port your application will run in the browser.
