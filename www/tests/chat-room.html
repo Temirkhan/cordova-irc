@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <link rel="stylesheet" type="text/css" href="../css/index.css" />
+        <title>To do list</title>
+        <script src="../bower_components/webcomponentsjs/webcomponents.js"></script>
+        
+        <!-- 
+            Add library for testing components
+        -->
+        <script src="../bower_components/web-component-tester/browser.js"></script>
+        
+        <!-- Import application elements -->
+        <link rel="import" href="../elements/elements.html">
+    </head>
+    <body unresolved fullbleed layout vertical>
+        <chat-room id="fixture"></chat-room>
+        <script>
+            var sut = document.getElementById('fixture');
+            console.log(sut);
+            
+            suite('app-header', function () {
+                test('dummy', function (done) {
+                    sut.addMessage('login', '19:33', 'Из скрипта');
+                    sut.addMessage('login2', '19:36', 'Купите виагру!');
+                    sut.addMessage('login2', '19:36', 'Купите виагру!');
+                    sut.addMessage('login2', '19:36', 'Купите виагру!');
+                    sut.addMessage('login2', '19:36', 'Купите виагру!');
+                                               
+                    // Data bindings will stamp out new DOM asynchronously
+                    // so wait to check for updates
+                    flush(function () {
+
+                        done();
+                    });
+                });
+                // test.skip('dummy');
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,130 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="chat-room" attributes="caption" vertical layout>
+    <template>
+        <style>
+            :host {
+                background: white;
+                width: 100%;
+            }
+            
+            #messages {
+                list-style: none;
+                padding: 10px;
+                margin: 0;
+            }
+            
+            #message {
+                margin: 0 5px 0 10px;
+            }
+            
+            button {
+                margin: 0 10px 0 5px;
+            }
+            
+            li {
+                text-transform: none;
+            }
+        </style>
+        <div>
+            <ul id="messages">
+                <template repeat="{{ messages }}">
+                   <li>
+                       <b>{{ login }}</b>
+                       [{{ time }}] 
+                       {{ message }}</li>
+                </template>
+            </ul>
+        </div>
+        <div horizontal layout>
+            <input flex type="text" id="message"/>
+            <button on-click="{{ sendMessage }}">Отправить</button>
+        </div>
+    </template>
+    <script>
+        (function () {
+            Polymer({
+                // define element prototype here
+                login: 'Kant',
+                messages: [
+                    { 
+                        login: 'kant', 
+                        time: '19:00',
+                        message: 'Сообщение',
+                        type: 'text'
+                    },
+                    { 
+                        login: 'kant', 
+                        time: '18:00',
+                        message: 'Сообщение',
+                        type: 'text'
+                    },
+                    { 
+                        login: 'kant', 
+                        time: '17:00',
+                        message: 'Сообщение'
+                    },
+                    { 
+                        login: 'kant', 
+                        time: '16:00',
+                        message: 'Сообщение'
+                    },
+                    { 
+                        login: 'kant', 
+                        time: '19:00',
+                        message: 'Сообщение'
+                    },
+                    { 
+                        login: 'noname', 
+                        time: '19:00',
+                        message: 'Сообщение',
+                        type: 'audio',
+                        audioStream: '.....'
+                    },
+                    { 
+                        login: 'noname', 
+                        time: '19:00',
+                        message: 'Сообщение',
+                        type: 'image',
+                        imageUrl: 'http://'
+                    }
+                ],
+                addMessage: function(login, time, message) {
+                    var messageObject = { 
+                        login: login, 
+                        time: time,
+                        message: message,
+                        type: 'text'
+                    }
+                    this.messages.push(messageObject);
+                },
+                sendMessage: function () {
+                    
+                    var time = new Date();
+                    time = time.getHours() + ":" + time.getMinutes();
+                    
+                    this.addMessage(this.login,
+                                    time, 
+                                    this.$.message.value);
+                    
+                    this.$.message.value = '';
+                },
+                initializeUsingDom: function () {                    
+                    var messagesElement = this.$.messages;
+                    
+                    for (var messageObjectIndex in this.messages) {
+                        var messageObject = this.messages[messageObjectIndex];
+                        var liElement = document.createElement("li");
+                        liElement.innerHTML = "<b>" + messageObject.login + "</b> [" + messageObject.time + "] " + messageObject.message;          
+                        messagesElement.appendChild(liElement);
+                    }
+                },
+                ready: function () {
+                    // this.initializeUsingDom();
+                }
+            });
+        })();
+    </script>
+</polymer-element>
+
+
