@@ -1,5 +1,5 @@
 {
-  "name": "cordova-todo-app",
+  "name": "cordova-irc",
   "version": "1.0.0",
   "description": "A sample Apache Cordova application that display todo list.",
   "main": "index.js",
