@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="irc-app" vertical layout>
+  <template>
+      <style>
+      </style>
+      <div class="content">
+          <form-login id="loginForm"
+                      hidden?="{{ currentPage != 'login' }}"
+                      on-login="{{ onLogin }}"
+                      ></form-login>
+          <chat-room id="chatForm"
+                     hidden?="{{ currentPage != 'chat' }}"></chat-room>
+      </div>
+  </template>
+  <script>
+    (function () {
+        Polymer({
+            currentPage: 'login',
+
+            onLogin: function (event, detail) {
+                this.$.chatForm.login = detail.login;
+                this.currentPage = 'chat';
+            }
+        });
+    })();
+  </script>
+</polymer-element>
+
+
