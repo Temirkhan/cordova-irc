@@ -99,13 +99,15 @@
                     this.messages.push(messageObject);
                 },
                 sendMessage: function () {
-                    
                     var time = new Date();
                     time = time.getHours() + ":" + time.getMinutes();
                     
-                    this.addMessage(this.login,
-                                    time, 
-                                    this.$.message.value);
+                    var data = {
+                        login: this.login,
+                        time: time,
+                        message: this.$.message.value
+                    }
+                    this.websocket.send(JSON.stringify(data));
                     
                     this.$.message.value = '';
                 },
@@ -121,6 +123,17 @@
                 },
                 ready: function () {
                     // this.initializeUsingDom();
+                    var websocket = new WebSocket("ws:localhost:8080");
+                    var self = this;
+                    this.websocket = websocket;
+                    websocket.onopen = function(evt) {
+                        console.log("connected");
+                        websocket.onmessage = function (evt) {
+                            console.log(evt.data);
+                            var data = JSON.parse(evt.data);
+                            self.addMessage(data.login, data.time, data.message);
+                        };
+                    };
                 }
             });
         })();
