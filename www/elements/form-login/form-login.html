@@ -1,4 +1,4 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
+﻿<link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <polymer-element name="form-login" vertical layout>
   <template>
@@ -13,6 +13,7 @@
             }
             .input-prompt {
                 padding-bottom: 10px;
+			
             }
           
             .content {
@@ -64,10 +65,10 @@
                    id="login"></input>
           </div>
           <div class="error">{{ errorMessage }}</div>
-          <div class="button" 
+          <form class="button" type="submit" 
                on-click="{{ doLogin }}">
               Вход
-          </div>
+          </form>
       </div>
   </template>
   <script>

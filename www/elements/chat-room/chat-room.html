@@ -1,4 +1,4 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
+﻿<link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <polymer-element name="chat-room" attributes="caption" vertical layout>
     <template>
@@ -30,16 +30,18 @@
             <ul id="messages">
                 <template repeat="{{ messages }}">
                    <li>
+                       [{{ time }}]
                        <b>{{ login }}</b>
-                       [{{ time }}] 
                        {{ message }}</li>
                 </template>
             </ul>
         </div>
+
         <div horizontal layout>
             <input flex type="text" id="message"/>
             <button on-click="{{ sendMessage }}">Отправить</button>
         </div>
+
     </template>
     <script>
         (function () {
@@ -47,9 +49,9 @@
                 // define element prototype here
                 login: 'Kant',
                 messages: [
-                    { 
+                    { time: '19:00',
                         login: 'kant', 
-                        time: '19:00',
+                        
                         message: 'Сообщение',
                         type: 'text'
                     },
@@ -59,38 +61,11 @@
                         message: 'Сообщение',
                         type: 'text'
                     },
-                    { 
-                        login: 'kant', 
-                        time: '17:00',
-                        message: 'Сообщение'
-                    },
-                    { 
-                        login: 'kant', 
-                        time: '16:00',
-                        message: 'Сообщение'
-                    },
-                    { 
-                        login: 'kant', 
-                        time: '19:00',
-                        message: 'Сообщение'
-                    },
-                    { 
-                        login: 'noname', 
-                        time: '19:00',
-                        message: 'Сообщение',
-                        type: 'audio',
-                        audioStream: '.....'
-                    },
-                    { 
-                        login: 'noname', 
-                        time: '19:00',
-                        message: 'Сообщение',
-                        type: 'image',
-                        imageUrl: 'http://'
-                    }
+                   
                 ],
                 addMessage: function(login, time, message) {
                     var messageObject = { 
+                        
                         login: login, 
                         time: time,
                         message: message,
@@ -103,6 +78,7 @@
                     time = time.getHours() + ":" + time.getMinutes();
                     
                     var data = {
+                        
                         login: this.login,
                         time: time,
                         message: this.$.message.value
